@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
+import logo from "../assets/light_mode_logo.png";
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -33,15 +34,15 @@ function Header() {
   }, []);
 
   return (
-    <header className="w-full bg-background border-b-2 border-accent relative z-50">
+    <header className="w-full bg-background border-b border-secondary/5 relative z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
           <img
             className="object-contain w-10 h-10"
-            src="/logo.png"
+            src={logo}
             alt="Book Well"
           />
-          <h3 className="text-xl font-bold text-secondary leading-none">
+          <h3 className="text-xl font-bold text-primary leading-none">
             Book Well
           </h3>
         </Link>
@@ -49,7 +50,7 @@ function Header() {
         <nav className="hidden md:flex items-center gap-1">
           <Link
             to="/"
-            className="px-4 py-1.5 text-sm font-semibold text-secondary hover:bg-secondary hover:text-white transition-all duration-200 rounded-md"
+            className="px-2 py-1.5 text-sm font-semibold text-secondary hover:bg-primary hover:text-white transition-all duration-200 rounded-md"
           >
             Home
           </Link>
@@ -57,7 +58,7 @@ function Header() {
           <div className="relative" ref={servicesRef}>
             <button
               onClick={() => setServicesOpen((prev) => !prev)}
-              className=" cursor-pointer flex items-center gap-1 px-4 py-1.5 text-sm font-semibold text-secondary hover:bg-secondary hover:text-white transition-all duration-200 rounded-md"
+              className=" cursor-pointer flex items-center gap-1 px-2 py-1.5 text-sm font-semibold text-secondary hover:bg-primary hover:text-white transition-all duration-200 rounded-md"
             >
               Services
               <ChevronDown
@@ -87,7 +88,7 @@ function Header() {
             <Link
               key={link.path}
               to={link.path}
-              className="px-4 py-1.5 text-sm font-semibold text-secondary hover:bg-secondary hover:text-white transition-all duration-200 rounded-md"
+              className="px-2 py-1.5 text-sm font-semibold text-secondary hover:bg-primary hover:text-white transition-all duration-200 rounded-md"
             >
               {link.name}
             </Link>
@@ -97,15 +98,21 @@ function Header() {
         <div className="hidden md:flex items-center gap-2">
           <Link
             to="/login"
-            className="px-4 py-1.5 text-sm font-semibold text-secondary hover:bg-secondary hover:text-white transition-all duration-200 rounded-md"
+            className="px-4 py-1.5 text-sm font-semibold text-secondary hover:bg-primary hover:text-white transition-all duration-200 rounded-md"
           >
             Login
           </Link>
           <Link
             to="/signup"
-            className="px-4 py-1.5 text-sm font-semibold bg-secondary text-white hover:bg-primary transition-all duration-200 rounded-md"
+            className="px-4 py-1.5 text-sm font-semibold bg-secondary/5 text-secondary transition-all duration-200 rounded-md"
           >
             Sign Up
+          </Link>
+          <Link
+            to="/services"
+            className="text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-primary text-white transition-colors"
+          >
+            Book Appointment
           </Link>
         </div>
 
@@ -184,6 +191,12 @@ function Header() {
               className="w-full text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-secondary text-white hover:bg-primary transition-colors"
             >
               Sign Up
+            </Link>
+            <Link
+              to="/services"
+              className="w-full text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-primary text-white transition-colors"
+            >
+              Book Appointment
             </Link>
           </div>
         </div>

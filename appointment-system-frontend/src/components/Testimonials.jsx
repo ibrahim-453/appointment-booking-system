@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import test1 from "../assets/test1.jpg";
 import test2 from "../assets/test2.jpg";
 import test3 from "../assets/test3.jpg";
@@ -57,10 +57,8 @@ function StarRating({ count }) {
 }
 
 function Testimonials() {
-  const [active, setActive] = useState(0);
-
   return (
-    <section className="w-full bg-background border-t border-primary/10">
+    <section className="w-full bg-white border-t border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-xl mb-12">
           <p className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
@@ -77,21 +75,17 @@ function Testimonials() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {testimonials.map((t, i) => (
+          {testimonials.map((t) => (
             <div
               key={t.name}
-              onClick={() => setActive(i)}
-              className={`flex flex-col gap-4 p-5 rounded-2xl border cursor-pointer transition-all ${
-                active === i
-                  ? "border-primary/40 bg-primary/5 shadow-sm"
-                  : "border-primary/10 hover:border-primary/25 bg-background"
-              }`}
+              className="flex flex-col gap-4 p-5 rounded-2xl border border-secondary cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex-shrink-0 overflow-hidden">
                   <img
                     src={t.image}
                     alt={t.name}
+                    loading="eager"
                     className="w-full h-full object-cover"
                   />
                 </div>

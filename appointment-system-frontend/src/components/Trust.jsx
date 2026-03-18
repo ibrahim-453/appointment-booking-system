@@ -9,7 +9,7 @@ function Trust() {
   ];
 
   return (
-    <section className="w-full bg-background border-b-2 border-accent">
+    <section className="w-full min-h-[300px] bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <h2 className="text-center text-2xl sm:text-3xl font-bold text-secondary mb-10">
           Trusted by People for{" "}
