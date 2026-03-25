@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CallToAction() {
   return (
@@ -14,9 +15,11 @@ function CallToAction() {
           Experience the ultimate convenience.
         </p>
 
-        <button className="bg-white text-primary font-semibold text-sm sm:text-base px-12 py-4 rounded-xl hover:bg-white/90 transition-colors duration-200">
+        <Link 
+        to="/signup"
+        className="bg-white text-primary font-semibold text-sm sm:text-base px-12 py-4 rounded-xl cursor-pointer hover:bg-white/90 transition-colors duration-200">
           Create Free Account
-        </button>
+        </Link>
 
       </div>
     </section>

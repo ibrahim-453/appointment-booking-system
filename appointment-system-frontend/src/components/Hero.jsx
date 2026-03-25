@@ -87,7 +87,7 @@ function Hero({
                 src={image}
                 alt="Book Well Appointment System"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
               />
             </div>
           )}

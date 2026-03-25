@@ -3,8 +3,8 @@ import Hero from "../components/Hero";
 import Trust from "../components/Trust";
 import Testimonials from "../components/Testimonials";
 import Work from "../components/Work";
-import Package from "../components/Package";
 import CallToAction from "../components/CallToAction";
+import Price from "../components/Price";
 
 function Home() {
   return (
@@ -12,8 +12,8 @@ function Home() {
       <Hero />
       <Trust />
       <Work />
-      <Package />
       <Testimonials />
+      <Price />
       <CallToAction />
     </div>
   )
