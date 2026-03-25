@@ -127,6 +127,8 @@ function About() {
             <div className="w-full lg:w-[45%] shrink-0">
               <img
                 src={storyImg}
+                loading="eager"
+                fetchPriority="high"
                 alt="Our Story"
                 className="w-full h-full object-cover"
               />
@@ -221,6 +223,8 @@ function About() {
             <div className="relative w-full lg:w-1/2">
               <img
                 src={whyImg}
+                loading="eager"
+                fetchPriority="high"
                 alt="Why Choose Book Well"
                 className="w-full h-full object-cover"
               />
