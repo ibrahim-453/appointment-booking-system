@@ -1,8 +1,8 @@
 import React from "react";
-import test1 from "../assets/test1.jpg";
-import test2 from "../assets/test2.jpg";
-import test3 from "../assets/test3.jpg";
-import test4 from "../assets/test4.jpg";
+import test1 from "../assets/images/test1.jpg";
+import test2 from "../assets/images/test2.jpg";
+import test3 from "../assets/images/test3.jpg";
+import test4 from "../assets/images/test4.jpg";
 import { Star } from "lucide-react";
 
 const testimonials = [

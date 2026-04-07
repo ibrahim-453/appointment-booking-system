@@ -10,7 +10,7 @@ const seedRoles = async () => {
       },
       {
         name: ROLES.DOCTOR,
-        description: "Doctor user",
+        description: "Professional user",
       },
       {
         name: ROLES.ADMIN,

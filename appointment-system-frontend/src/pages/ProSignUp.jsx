@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../assets/light_mode_logo.png";
-import sideImg from "../assets/prosignup.png";
+import logo from "../assets/images/light_mode_logo.png";
+import sideImg from "../assets/images/prosignup.png";
 import GoogleButton from "../components/GoogleButton";
 import { Link } from "react-router-dom";
 import { professionalSignUpSchema } from "../validations/authSchema";

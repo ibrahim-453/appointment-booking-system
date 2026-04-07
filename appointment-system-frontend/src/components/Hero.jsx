@@ -1,5 +1,5 @@
 import React from "react";
-import defaultHero from "../assets/light_mode_hero.png";
+import defaultHero from "../assets/images/light_mode_hero.png";
 import { Link } from "react-router-dom";
 function Hero({
   titleLines = [

@@ -1,9 +1,9 @@
 import React from "react";
 import Hero from "../components/Hero";
-import about from "../assets/light_mode_about.png";
-import storyImg from "../assets/story.png";
-import whyImg from "../assets/why.png";
-import proImg from "../assets/pro_dashboard.png";
+import about from "../assets/images/light_mode_about.png";
+import storyImg from "../assets/images/story.png";
+import whyImg from "../assets/images/why.png";
+import proImg from "../assets/images/pro_dashboard.png";
 import {
   Zap,
   ShieldCheck,

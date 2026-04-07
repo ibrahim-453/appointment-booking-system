@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import contactImg from "../assets/contact.png";
+import contactImg from "../assets/images/contact.png";
 import {
   CalendarCheck,
   CreditCard,

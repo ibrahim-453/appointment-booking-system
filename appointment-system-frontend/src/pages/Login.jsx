@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../assets/light_mode_logo.png";
-import loginImg from "../assets/login.png";
+import logo from "../assets/images/light_mode_logo.png";
+import loginImg from "../assets/images/login.png";
 import { useForm } from "react-hook-form";
 import usePasswordToggle from "../hooks/ShowPassword";
 import { Eye, EyeOff } from "lucide-react";

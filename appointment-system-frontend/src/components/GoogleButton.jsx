@@ -1,5 +1,5 @@
 import React from "react";
-import google from "../assets/google.svg";
+import google from "../assets/images/google.svg";
 function GoogleButton() {
   return (
     <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-2xl py-2 px-4 hover:bg-secondary/5 transition duration-300 cursor-pointer">

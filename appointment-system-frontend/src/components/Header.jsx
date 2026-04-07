@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logo from "../assets/light_mode_logo.png";
+import logo from "../assets/images/light_mode_logo.png";
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,7 +35,7 @@ function Header() {
   }, []);
 
   return (
-    <header className="w-full bg-background border-b border-secondary/5 relative z-50">
+    <header className="w-full bg-background border-b border-secondary/20 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
           <img

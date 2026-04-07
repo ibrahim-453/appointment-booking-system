@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../validations/authSchema";
 import { Link } from "react-router-dom";
-import logo from "../assets/light_mode_logo.png";
-import sideImg from "../assets/signup.png";
+import logo from "../assets/images/light_mode_logo.png";
+import sideImg from "../assets/images/signup.png";
 import {
   Eye,
   EyeOff,

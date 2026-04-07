@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/dark_mode_logo.png";
+import logo from "../assets/images/dark_mode_logo.png";
 
 function Footer() {
   const quickLinks = [
