@@ -42,11 +42,18 @@ class ValidationError extends ApiError{
     }
 }
 
+class ConflictError extends ApiError{
+    constructor(message = 'Conflict Error', details = null){
+        super(409, message, details)
+    }
+}
+
 export {
     BadRequestError,
     NotFoundError,
     TooManyRequestError,
     InternalServerError,
     UnauthorizedError,
-    ValidationError
+    ValidationError,
+    ConflictError
 }

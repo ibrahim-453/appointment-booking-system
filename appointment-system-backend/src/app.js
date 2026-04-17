@@ -5,6 +5,8 @@ import helmet from "helmet";
 import { config } from "./config/index.js";
 import requestIdMiddleware from "./middlewares/requestId.js";
 import { httpLogger } from "./utils/httpLogger.js";
+import router from "./routes/index.js";
+import { initializePassport, passport } from "./config/passport.js";
 
 // Initialize Express
 const app = express();
@@ -35,4 +37,8 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
+initializePassport()
+
+app.use(passport.initialize())
+app.use(router)
 export default app;

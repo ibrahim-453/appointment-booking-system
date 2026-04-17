@@ -1,4 +1,4 @@
-import { Role } from "../models/role.model.js";
+import Role from "../models/role.model.js";
 import { ROLES } from "../../utils/constants.js";
 
 const seedRoles = async () => {
@@ -9,7 +9,7 @@ const seedRoles = async () => {
         description: "Regular user",
       },
       {
-        name: ROLES.DOCTOR,
+        name: ROLES.PROFESSIONAL,
         description: "Professional user",
       },
       {

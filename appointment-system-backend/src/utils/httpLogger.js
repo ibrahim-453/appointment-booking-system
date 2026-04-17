@@ -1,5 +1,5 @@
 import morgan from "morgan";
-import { logger } from "./logger.js";
+import logger from "./logger.js";
 
 morgan.token("request-id", (req) => req.requestId || "-");
 morgan.token("user-id", (req) => req.user?.id || "-");

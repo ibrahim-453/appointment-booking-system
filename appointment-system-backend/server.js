@@ -1,7 +1,7 @@
 import app from "./src/app.js";
 import { config } from "./src/config/index.js";
 import { connectDB, disconnectDB } from "./src/config/db.js";
-import { logger } from "./src/utils/logger.js";
+import logger from "./src/utils/logger.js";
 import seedRoles from "./src/database/seeds/role.seed.js";
 import dns from 'dns'
 

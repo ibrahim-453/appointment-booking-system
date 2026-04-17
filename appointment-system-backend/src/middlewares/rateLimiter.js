@@ -1,5 +1,5 @@
 import rateLimiter from 'express-rate-limit'
-import { logger } from '../utils/logger.js'
+import logger from '../utils/logger.js';
 import { TooManyRequestError } from '../utils/errors.js'
 
 const defaultLimiter = rateLimiter({

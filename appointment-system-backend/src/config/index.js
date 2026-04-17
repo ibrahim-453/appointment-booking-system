@@ -18,13 +18,22 @@ const config = {
     maxPool: Number(process.env.MAX_POOL_SIZE) || 10,
     minPool: Number(process.env.MIN_POOL_SIZE) || 1,
   },
+  
+  //  JWT
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    refreshSecret: process.env.JWT_REFRESH_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN,
+    refreshSecretExpiry: process.env.JWT_REFRESH_SECRET_EXPIRES_IN,
+    rememberMeExpiry: process.env.JWT_REFRESH_SECRET_EXPIRES_IN_REMEMBER_ME
+  },
 
   //Logs
   log: {
     logLevel: process.env.LOG_LEVEL || "info",
     logDir: process.env.LOG_DIR || "./logs",
-    logMaxSize: process.env.LOG_MAX_SIZE || "10m",
-    logMaxFiles: process.env.LOG_MAX_FILES || "14d",
+    maxSize: process.env.LOG_MAX_SIZE || "10m",
+    maxFiles: process.env.LOG_MAX_FILES || "14d",
   },
 };
 

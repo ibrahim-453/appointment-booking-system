@@ -1,5 +1,5 @@
-import { logger } from "../utils/logger";
-import { ValidationError } from "../utils/errors";
+import logger from "../utils/logger.js";
+import { ValidationError } from "../utils/errors.js";
 
 const validate = (schema) => async (req,res,next) => {
     const { error, value} = schema.validate(req.body, {
