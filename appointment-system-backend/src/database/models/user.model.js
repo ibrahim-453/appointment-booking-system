@@ -14,6 +14,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    businessName: {
+      type: String,
+      required: false,
+    },
+    serviceCategory: {
+      type: String,
+      required: false,
+    },
+    experience: {
+      type: String,
+      required: false,
+    },
     role:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Role',

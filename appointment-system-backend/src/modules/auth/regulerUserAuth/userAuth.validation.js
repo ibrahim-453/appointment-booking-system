@@ -7,9 +7,4 @@ const registerSchema = joi.object({
     phone: joi.string().pattern(/^[0-9]{11}$/)
 })
 
-const loginSchema = joi.object({
-    email: joi.string().email().required(),
-    password: joi.string().min(6).required()
-})
-
-export { registerSchema, loginSchema }
+export { registerSchema }
