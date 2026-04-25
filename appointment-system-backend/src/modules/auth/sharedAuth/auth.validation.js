@@ -5,4 +5,8 @@ const loginSchema = joi.object({
     password: joi.string().min(6).required()
 })
 
-export { loginSchema }
+const refreshTokenSchema = joi.object({
+    refreshToken: joi.string().required()
+})
+
+export { loginSchema, refreshTokenSchema }

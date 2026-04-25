@@ -2,16 +2,15 @@ import jwt from "jsonwebtoken";
 import User from "../../../database/models/user.model.js";
 import logger from "../../../utils/logger.js";
 import { config } from "../../../config/index.js";
+import { UnauthorizedError } from "../../../utils/errors.js";
 
 const generateToken = (user, rememberMe = false) => {
-  const payload = {
-    id: user._id,
-    email: user.email,
-  };
-  const accessToken = jwt.sign(payload, config.jwt.secret, {
+  const accessToken = jwt.sign({ id: user._id,
+    email: user.email, type: "access"}, config.jwt.secret, {
     expiresIn: config.jwt.expiresIn,
   });
-  const refreshToken = jwt.sign(payload, config.jwt.refreshSecret, {
+  const refreshToken = jwt.sign({ id: user._id,
+    email: user.email, type: "refresh"}, config.jwt.refreshSecret, {
     expiresIn: rememberMe
       ? config.jwt.rememberMeExpiry
       : config.jwt.refreshSecretExpiry,
@@ -34,4 +33,23 @@ const login = async (user, data) => {
   };
 };
 
-export { login };
+const refreshAccessToken = async (refreshToken) => {
+  const payload = jwt.verify(refreshToken, config.jwt.refreshSecret)
+
+  if(payload.type !== "refresh") {
+    throw new UnauthorizedError("Invalid token type");
+  }
+
+  const user = await User.findById(payload.id).select("-password").populate("role", "name");
+
+  if (!user) {
+    throw new UnauthorizedError("User not found");
+  }
+
+  const tokens = generateToken(user)
+
+  logger.info(`Token refreshed for user: ${user.email}`);
+
+  return tokens
+}
+export { login, refreshAccessToken };

@@ -11,25 +11,36 @@ import Packages from "./pages/Packages";
 import Services from "./pages/Services";
 import ViewDetail from "./pages/ViewDetail";
 import Payment from "./pages/Payment";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function Router() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />
-          <Route path="pro-signup" element={<ProSignUp />} />
-          <Route path="packages" element={<Packages />} />
-          <Route path="services" element={<Services />} />
-          <Route path="service-detail" element={<ViewDetail />} />/
-          <Route path="book-appointment" element={<Payment />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+            <Route path="pro-signup" element={<ProSignUp />} />
+            <Route path="packages" element={<Packages />} />
+            <Route path="services" element={<Services />} />
+            <Route path="service-detail" element={<ViewDetail />} />/
+            <Route
+              path="book-appointment"
+              element={
+                <ProtectedRoute>
+                  <Payment />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

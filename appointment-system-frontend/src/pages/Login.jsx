@@ -1,4 +1,5 @@
-import React from "react";
+import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
 import logo from "../assets/images/light_mode_logo.png";
 import loginImg from "../assets/images/login.png";
 import { useForm } from "react-hook-form";
@@ -8,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validations/authSchema";
 import GoogleButton from "../components/GoogleButton";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 function Login() {
   const {
     register,
@@ -15,10 +17,17 @@ function Login() {
     reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm({ resolver: yupResolver(loginSchema), mode: "onChange" });
+  const { login } = useContext(AuthContext)
+  const navigate = useNavigate()
   const { isVisible, togglePassword } = usePasswordToggle();
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      await login(data);
+      navigate("/");
+      reset();
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
   return (
     <div className="w-full min-h-screen bg-background flex flex-col lg:flex-row">

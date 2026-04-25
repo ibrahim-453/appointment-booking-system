@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../validations/authSchema";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/light_mode_logo.png";
 import sideImg from "../assets/images/signup.png";
 import {
@@ -16,6 +16,7 @@ import {
 import GoogleButton from "../components/GoogleButton";
 import usePasswordToggle from "../hooks/ShowPassword";
 import useConfirmPasswordToggle from "../hooks/ShowConfirmPassword";
+import { userRegisterApi } from "../api/authApi";
 
 function Signup() {
   const {
@@ -28,7 +29,7 @@ function Signup() {
 
   const { isVisible, togglePassword } = usePasswordToggle()
   const { showPassword, toggleConfirmPassword } = useConfirmPasswordToggle()
-
+  const navigate = useNavigate()
   const password = watch("password", "");
   const { score, label, barColor, textColor } = getPasswordStrength(password);
 
@@ -81,9 +82,14 @@ function getPasswordStrength(password) {
   };
   return { score, ...(map[score] || {}) };
 }
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      await userRegisterApi(data)
+      navigate('/login')
+      reset()
+    } catch (error) {
+      console.log("Something went wrong. Please Register again", error.message);
+    }
   };
 
   return (
