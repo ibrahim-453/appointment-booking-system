@@ -28,6 +28,11 @@ const config = {
     rememberMeExpiry: process.env.JWT_REFRESH_SECRET_EXPIRES_IN_REMEMBER_ME
   },
 
+  google: {
+    clientId: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  },
+
   //Logs
   log: {
     logLevel: process.env.LOG_LEVEL || "info",
@@ -38,7 +43,7 @@ const config = {
 };
 
 const validateConfig = () => {
-  const requiredConfig = ["database.dbUrl"];
+  const requiredConfig = ["database.dbUrl", "jwt.secret", "jwt.refreshSecret"];
   if (config.nodeEnv === "production") {
     const missing = [];
     requiredConfig.forEach((key) => {

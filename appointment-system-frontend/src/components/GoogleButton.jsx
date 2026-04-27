@@ -1,10 +1,34 @@
-import React from "react";
-import google from "../assets/images/google.svg";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from '@react-oauth/google'
 function GoogleButton() {
+  const { googleLogin } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleSuccess = async (credentialResponse) => {
+    try {
+      await googleLogin(credentialResponse.credential)
+      navigate('/')
+    } catch (error) {
+      console.error('Google Authentication Error', error)
+    }
+  }
+
+    const handleError = () => {
+    console.error("Google Authentication was unsuccessful");
+  };
   return (
-    <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-2xl py-2 px-4 hover:bg-secondary/5 transition duration-300 cursor-pointer">
-      <img src={google} alt="google" className="w-7 h-auto" />
-      <span className="font-medium text-gray-700">Continue with Google</span>
+    <button className="w-full flex items-center justify-center gap-3 py-2 px-4">
+       <GoogleLogin
+      onSuccess={handleSuccess}
+      onError={handleError}
+      theme="outline"
+      size="large"
+      text="continue_with"
+      shape="pill"
+      width="400"
+    />
     </button>
   );
 }

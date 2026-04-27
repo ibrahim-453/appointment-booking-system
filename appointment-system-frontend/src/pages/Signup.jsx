@@ -84,11 +84,14 @@ function getPasswordStrength(password) {
 }
   const onSubmit = async (data) => {
     try {
-      await userRegisterApi(data)
-      navigate('/login')
-      reset()
+      const res = await userRegisterApi(data)
+      if(res && res.data && res.data.success){
+        reset()
+        navigate("/login")
+      }
     } catch (error) {
       console.log("Something went wrong. Please Register again", error.message);
+      reset()
     }
   };
 

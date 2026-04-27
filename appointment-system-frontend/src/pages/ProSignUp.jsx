@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../assets/images/light_mode_logo.png";
 import sideImg from "../assets/images/prosignup.png";
-import GoogleButton from "../components/GoogleButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { professionalSignUpSchema } from "../validations/authSchema";
 import usePasswordToggle from "../hooks/ShowPassword";
 import useConfirmPasswordToggle from "../hooks/ShowConfirmPassword";
 import { ChevronDown, Eye, EyeOff } from "lucide-react";
+import { professionalRegisterApi } from "../api/authApi";
 function ProSignUp() {
   const {
     register,
@@ -17,7 +17,7 @@ function ProSignUp() {
     watch,
     formState: { errors, isSubmitting, isValid },
   } = useForm({ resolver: yupResolver(professionalSignUpSchema), mode: "onChange" });
-
+  const navigate = useNavigate();
   const getPasswordStrength = (password) => {
     let score = 0;
     if (password.length > 6) score++;
@@ -60,9 +60,17 @@ function ProSignUp() {
   const password = watch("password", "");
   const { score, label, barColor, textColor } = getPasswordStrength(password);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      const res = await professionalRegisterApi(data)
+      if(res && res.data && res.data.success){
+        reset()
+        navigate("/login")
+      }
+    } catch (error) {
+       console.log("Something went wrong. Please Register again", error.message);
+       reset()
+    }
   };
 
   return (
@@ -79,9 +87,6 @@ function ProSignUp() {
           <p className="text-sm text-secondary/60">
             Join Book Well as a Professional to offer your services
           </p>
-        </div>
-        <div className="mb-6">
-          <GoogleButton />
         </div>
         <div className="flex items-center gap-3 mb-6">
           <div className="flex-1 h-px bg-secondary/10" />
