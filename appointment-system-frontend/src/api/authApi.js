@@ -23,3 +23,11 @@ export const logoutApi = () => {
 export const refreshTokenApi = (data) => {
     return api.post('/auth/refresh-token', data)
 }
+
+export const getCurrentUserApi = (data) => {
+    return api.get('/auth/me', {
+        headers: {
+            Authorization: `Bearer ${data}`
+        }
+    })
+}

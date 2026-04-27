@@ -1,5 +1,6 @@
+import logger from "../../../utils/logger.js";
 import { sendSuccess } from "../../../utils/response.js";
-import { login, refreshAccessToken } from "./auth.service.js";
+import { getUser, login, refreshAccessToken } from "./auth.service.js";
 
 const loginUser = async (req, res, next) => {
     try {
@@ -15,6 +16,7 @@ const loginUser = async (req, res, next) => {
 const logout = async (req, res, next) => {
     try {
         return sendSuccess(res, null, 'User logged out successfully')
+        logger.info(`User Logout Successfully ${req.user.email}`)
     } catch (error) {
         next(error)
     }
@@ -30,4 +32,12 @@ const refreshToken = async (req, res, next) => {
     }
 }
 
-export { loginUser, logout, refreshToken }
+const currentUser = async(req, res, next) => {
+    try {
+        const user = await getUser(req.user)
+        return sendSuccess(res, user, 'Current user fetched successfully')
+    } catch (error) {
+        next(error)
+    }
+}
+export { loginUser, logout, refreshToken, currentUser }

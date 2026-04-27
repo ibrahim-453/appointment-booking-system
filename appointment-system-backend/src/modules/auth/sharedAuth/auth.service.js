@@ -52,4 +52,11 @@ const refreshAccessToken = async (refreshToken) => {
 
   return tokens
 }
-export { login, refreshAccessToken };
+
+const getUser = async (data) => {
+  const currentUser = await User.findById(data._id ).select("-password").populate("role", "name");
+  return {
+    user: currentUser
+  }
+}
+export { login, refreshAccessToken , getUser};

@@ -1,19 +1,20 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "../assets/images/light_mode_logo.png";
-
+import { AuthContext } from "../context/AuthContext";
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesRef = useRef(null);
-
+  const { user, logout, isAuthenticated, loading } = useContext(AuthContext);
+  const navigate = useNavigate()
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Packages", path: "/packages"},
-    { name: "Contact", path: "/contact" }
+    { name: "Packages", path: "/packages" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const services = [
@@ -34,6 +35,14 @@ function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      console.log("Logout Successful");
+    } catch (error) {
+      console.log("Error during logout", error);
+    }
+  };
   return (
     <header className="w-full bg-background border-b border-secondary/20 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
@@ -97,18 +106,34 @@ function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <Link
-            to="/login"
-            className="px-4 py-1.5 text-sm font-semibold text-secondary hover:bg-primary hover:text-white transition-all duration-200 rounded-md"
-          >
-            Login
-          </Link>
-          <Link
-            to="/signup"
-            className="px-4 py-1.5 text-sm font-semibold bg-secondary/5 text-secondary transition-all duration-200 rounded-md"
-          >
-            Sign Up
-          </Link>
+          {user && isAuthenticated ? (
+            <>
+              <div>
+                <img onClick={() => navigate('/user-dashboard')} src={user?.profilePicture} alt={user.name} className="w-10 h-10 object-cover text-sm rounded-full cursor-pointer" />
+              </div>
+              <Link
+                onClick={handleLogout}
+                className="px-4 py-1.5 text-sm font-semibold bg-secondary text-white transition-all duration-200 rounded-md"
+              >
+                Logout
+              </Link>
+            </>
+          ) : (
+            <> 
+              <Link
+                to="/login"
+                className="px-4 py-1.5 text-sm font-semibold text-secondary hover:bg-primary hover:text-white transition-all duration-200 rounded-md"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="px-4 py-1.5 text-sm font-semibold bg-secondary/5 text-secondary transition-all duration-200 rounded-md"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
           <Link
             to="/services"
             className="text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-primary text-white transition-colors"
@@ -117,8 +142,12 @@ function Header() {
           </Link>
         </div>
 
-        <button
-          className="md:hidden p-2 rounded-lg text-secondary hover:bg-secondary/5 transition-colors"
+        <div className="md:hidden flex items-center gap-2">
+          <div>
+              <img onClick={() => navigate('/user-dashboard')} src={user?.profilePicture} alt={user.name} className="w-10 h-10 object-cover text-sm rounded-full cursor-pointer" />
+              </div>
+          <button
+          className="p-2 rounded-lg text-secondary hover:bg-secondary/5 transition-colors"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label="Toggle menu"
         >
@@ -128,6 +157,7 @@ function Header() {
             <Menu className="w-5 h-5" />
           )}
         </button>
+        </div>
       </div>
 
       {mobileOpen && (
@@ -179,7 +209,19 @@ function Header() {
           ))}
 
           <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-accent/20">
-            <Link
+            {user && isAuthenticated ? 
+            (
+              <>
+            <button
+              onClick={handleLogout}
+              className="w-full text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-secondary text-white hover:bg-primary transition-colors"
+            >
+              Logout
+            </button>
+              </>
+            ) : (
+              <>
+                <Link
               to="/login"
               onClick={() => setMobileOpen(false)}
               className="w-full text-center px-4 py-2.5 rounded-xl text-sm font-semibold text-secondary border border-secondary/20 hover:bg-secondary/5 transition-colors"
@@ -193,6 +235,9 @@ function Header() {
             >
               Sign Up
             </Link>
+              </>
+            )
+          }
             <Link
               to="/services"
               className="w-full text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-primary text-white transition-colors"
