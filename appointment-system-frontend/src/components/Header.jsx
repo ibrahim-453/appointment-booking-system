@@ -109,7 +109,7 @@ function Header() {
           {user && isAuthenticated ? (
             <>
               <div>
-                <img onClick={() => navigate('/user-dashboard')} src={user?.profilePicture} alt={user.name} className="w-10 h-10 object-cover text-sm rounded-full cursor-pointer" />
+                <img onClick={() => navigate('/user-dashboard')} src={user?.profilePicture} alt={user?.name} className="w-10 h-10 object-cover text-sm rounded-full cursor-pointer" />
               </div>
               <Link
                 onClick={handleLogout}
@@ -144,7 +144,7 @@ function Header() {
 
         <div className="md:hidden flex items-center gap-2">
           <div>
-              <img onClick={() => navigate('/user-dashboard')} src={user?.profilePicture} alt={user.name} className="w-10 h-10 object-cover text-sm rounded-full cursor-pointer" />
+              <img onClick={() => navigate('/user-dashboard')} src={user?.profilePicture} alt={user?.name} className="w-10 h-10 object-cover text-sm rounded-full cursor-pointer" />
               </div>
           <button
           className="p-2 rounded-lg text-secondary hover:bg-secondary/5 transition-colors"
