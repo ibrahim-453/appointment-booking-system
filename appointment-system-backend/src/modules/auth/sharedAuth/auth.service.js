@@ -82,6 +82,9 @@ const googleLogin = async (credential, role) => {
 
   let user = await User.findOne({ $or: [{ googleId }, { email }] });
   if (!user) {
+     if (!role) {
+    throw new UnauthorizedError("No account found. Please sign up first.");
+  }
     const userRole = await Role.findOne({ name: role });
     const password = await bcrypt.hash(crypto.randomUUID(), 12);
     user = await User.create({
