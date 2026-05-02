@@ -1,8 +1,8 @@
 import express from "express";
 import validate from "../../../middlewares/validation.js";
 import { registerProfessionalSchema } from "./professionalUserAuth.validation.js";
-import { register } from "./professionalUserAuth.controller.js";
-
+import { completeUserProfile, register } from "./professionalUserAuth.controller.js";
+import { authenticate } from "../../../middlewares/auth.js";
 const router = express.Router();
 
 router.post(
@@ -11,5 +11,11 @@ router.post(
 
   register,
 );
+
+router.post(
+  '/complete-profile',
+  authenticate,
+  completeUserProfile
+)
 
 export default router;

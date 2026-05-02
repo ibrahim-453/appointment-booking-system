@@ -1,5 +1,5 @@
 import { sendCreated } from "../../../utils/response.js";
-import { registerProfessionalUser } from "./professionalUserAuth.service.js";
+import { completeProfile, registerProfessionalUser } from "./professionalUserAuth.service.js";
 
 const register = async (req, res, next) => {
   try {
@@ -15,4 +15,14 @@ const register = async (req, res, next) => {
   }
 };
 
-export { register };
+const completeUserProfile = async (req, res, next) => {
+  try {
+    const profile = await completeProfile(req.user, req.body);
+
+    return sendCreated(res, profile, "Profile completed successfully");
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { register, completeUserProfile };

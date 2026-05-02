@@ -12,8 +12,8 @@ export const loginApi = (data) => {
     return api.post('/auth/login', data)
 }
 
-export const googleLoginApi = (data) => {
-    return api.post('/auth/regular-user/google', { credential: data })
+export const googleLoginApi = (credential, role) => {
+    return api.post('/auth/google', { credential, role})
 }
 
 export const logoutApi = () => {

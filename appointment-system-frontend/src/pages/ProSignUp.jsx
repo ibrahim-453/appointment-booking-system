@@ -9,6 +9,7 @@ import usePasswordToggle from "../hooks/ShowPassword";
 import useConfirmPasswordToggle from "../hooks/ShowConfirmPassword";
 import { ChevronDown, Eye, EyeOff } from "lucide-react";
 import { professionalRegisterApi } from "../api/authApi";
+import GoogleButton from "../components/GoogleButton";
 function ProSignUp() {
   const {
     register,
@@ -87,6 +88,9 @@ function ProSignUp() {
           <p className="text-sm text-secondary/60">
             Join Book Well as a Professional to offer your services
           </p>
+        </div>
+        <div className="mb-6">
+          <GoogleButton />
         </div>
         <div className="flex items-center gap-3 mb-6">
           <div className="flex-1 h-px bg-secondary/10" />

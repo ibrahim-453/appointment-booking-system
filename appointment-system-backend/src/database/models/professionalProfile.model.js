@@ -68,7 +68,7 @@ const professionalProfileSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-    serviceCategory: {
+    category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       default: null,

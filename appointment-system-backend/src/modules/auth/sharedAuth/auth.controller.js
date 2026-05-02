@@ -1,6 +1,6 @@
 import logger from "../../../utils/logger.js";
 import { sendSuccess } from "../../../utils/response.js";
-import { getUser, login, refreshAccessToken } from "./auth.service.js";
+import { getUser, googleLogin, login, refreshAccessToken } from "./auth.service.js";
 
 const loginUser = async (req, res, next) => {
     try {
@@ -32,6 +32,16 @@ const refreshToken = async (req, res, next) => {
     }
 }
 
+const googleUser = async (req, res, next) => {
+  try {
+    const { credential, role } = req.body
+    const user = await googleLogin(credential, role);
+    return sendSuccess(res, user, "User logged in successfully");
+  } catch (error) {
+    next(error);
+  }
+};
+
 const currentUser = async(req, res, next) => {
     try {
         const user = await getUser(req.user)
@@ -40,4 +50,4 @@ const currentUser = async(req, res, next) => {
         next(error)
     }
 }
-export { loginUser, logout, refreshToken, currentUser }
+export { loginUser, logout, refreshToken, googleUser, currentUser }

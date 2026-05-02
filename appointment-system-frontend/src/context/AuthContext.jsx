@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   const googleLogin = async (data) => {
     try {
       setLoading(true);
-      const res = await googleLoginApi(data);
+      const res = await googleLoginApi(data.credential, data.role);
       if (!res || !res.data || !res.data.data) {
         throw new Error("Invalid response from server");
       }
