@@ -15,7 +15,7 @@ const registerProfessionalSchema = joi.object({
 
 const completeProfileSchema = joi.object({
   businessName: joi.string().optional(),
-  serviceCategory: joi.string().optional(),
+  category: joi.string().optional(),
   experience: joi.string().optional(),
   about: joi.string().max(1000).required(),
   credential: joi
@@ -80,4 +80,4 @@ const completeProfileSchema = joi.object({
     .min(1)
     .required(),
 });
-export { registerProfessionalSchema };
+export { registerProfessionalSchema, completeProfileSchema };
